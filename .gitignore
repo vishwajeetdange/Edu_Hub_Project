@@ -1,0 +1,10 @@
+*.cache
+**/.vs
+.vscode
+**/obj/
+**/bin/
+*.ncrunchsolution*
+*.ncrunchproject*
+*.user
+ 
+.fake
