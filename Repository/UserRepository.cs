@@ -1,8 +1,11 @@
 using System;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MVC_EduHub_Project.Models;
 using MVC_EduHub_Project.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MVC_EduHub_Project.Repository
 {
@@ -25,10 +28,8 @@ namespace MVC_EduHub_Project.Repository
 
 		public bool StudentLogin(LoginModel user)
 		{
-			// System.Console.WriteLine("Name"+user.UserName);
-			// System.Console.WriteLine("Paas"+user.Password);
-			//System.Console.WriteLine("Role"+user.Role);
-			 var user1 = _context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password && u.Role=="Student");
+			//select * from users where username=user.username and password = user.password and role="Student"; 
+			var user1 = _context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password && u.Role=="Student");
 			 if (user1 != null)
 			 {
 				return true;
@@ -41,17 +42,19 @@ namespace MVC_EduHub_Project.Repository
 								
 		//	throw new NotImplementedException();
 		}
-	public bool EducatorLogin(LoginModel loginModel)
+	public User EducatorLogin(LoginModel loginModel)
 		{
-			var user1 = _context.Users.FirstOrDefault(u => u.UserName == loginModel.UserName && u.Password == loginModel.Password && u.Role == "Educator");
-			if (user1 != null)
+			var user2 = _context.Users.FirstOrDefault(u => u.UserName == loginModel.UserName && u.Password == loginModel.Password && u.Role == "Educator");
+			
+			//System.Console.WriteLine(user2.UserId);
+			if (user2 != null)
 			{
-				return true;
+				return user2;
 			}
 			else
 
 			{
-				return false;
+				return null;
 			}
 			//throw new NotImplementedException();
 		}

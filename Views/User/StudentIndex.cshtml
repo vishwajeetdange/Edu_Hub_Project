@@ -1,0 +1,42 @@
+@model MVC_EduHub_Project.User
+
+@{
+    ViewData["Title"] = "Student Page";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<h2>Welcome Student : @TempData["Student"]</h2>
+
+
+<hr />
+
+    <img src="~/assests/images/student.png" alt="" height="250px">
+    
+@* <div class="row "style="display:absolute;top=0;">
+    <div class="col-md-4">
+        <form asp-action="">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+              
+                <a href="" asp-for="CoursesAvailable">Courses Available</a><br>
+                <a href="" asp-for="SubmitEnquiry">Submit Enquiry</a><br>
+                <a href="" asp-for="MyEnrollments">My Enrollments</a><br>
+                <a href="" asp-for="EnloreForCourse">Enlore For Course</a><br>
+                <a href="" asp-for="Feedback">Feedback</a><br>
+            </div>
+           
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+} *@

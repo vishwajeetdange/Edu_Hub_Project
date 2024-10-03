@@ -13,7 +13,7 @@ namespace MVC_EduHub_Project
 		public string UserName { get; set; }
 		[DisplayName("Password")]
 		[Required(ErrorMessage = "Password is Must")]
-		//[Range(minimum: 8, maximum: 15)]
+		[MinLength(8),MaxLength(15)]
 		[DataType(DataType.Password)]
 		public string Password { get; set;}
 		

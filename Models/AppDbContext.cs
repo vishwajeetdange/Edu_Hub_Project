@@ -5,13 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MVC_EduHub_Project.Models
 {
-    public class AppDbContext : DbContext
-    {
+	public class AppDbContext : DbContext
+	{
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
-        // public DbSet<Course> Courses { get; set; }
+		public DbSet<User> Users { get; set; }
+		public DbSet<LoginModel> LoginModel { get; set; }
+	
+		 public DbSet<Course> Courses { get; set; }
 
-    }
+	}
 }

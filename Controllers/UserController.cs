@@ -73,7 +73,7 @@ public class UserController : Controller
 	{
 		if (_userservice.StudentLogin(loginModel))
 		{
-			//System.Console.WriteLine("Sucssefull");
+			TempData["Student"] = loginModel.UserName;
 			return RedirectToAction("StudentIndex", "User");
 		}
 		else
@@ -93,9 +93,21 @@ public class UserController : Controller
 	public IActionResult Educator_Login(LoginModel loginModel)
 
 	{
-		if (_userservice.EducatorLogin(loginModel))
+		// if (_userservice.EducatorLogin(loginModel))
+		// {
+		// 	//System.Console.WriteLine("Sucssefull");
+		// 	TempData["Educator"] = loginModel.UserName;
+		// //	TempData["UserId"] = loginModel.UserId;
+		// 	return RedirectToAction("EducatorIndex", "User");
+		// }
+		var data = _userservice.EducatorLogin(loginModel);
+		 //  var id =data.UserId;
+		 	TempData["UserId"]=data.UserId;
+		 //  System.Console.WriteLine("id is : "+id);
+		if (data != null)
+		
 		{
-			//System.Console.WriteLine("Sucssefull");
+			TempData["Educator"] = loginModel.UserName;
 			return RedirectToAction("EducatorIndex", "User");
 		}
 		else
@@ -103,6 +115,14 @@ public class UserController : Controller
 			//System.Console.WriteLine("Not login");
 			return RedirectToAction("Educator_Login", "User");
 		}
+	}
+	public ActionResult StudentLogOut()
+	{
+		return RedirectToAction("Index", "Home");
+	}
+	public ActionResult EducatorLogOut()
+	{
+		return RedirectToAction("Index", "Home");
 	}
 
 

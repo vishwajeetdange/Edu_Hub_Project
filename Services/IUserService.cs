@@ -1,5 +1,6 @@
 using System;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using MVC_EduHub_Project.Models;
 
 namespace MVC_EduHub_Project.Services
 {
@@ -7,7 +8,7 @@ namespace MVC_EduHub_Project.Services
 	{
 		User CreateUser(User newuser);
 		bool StudentLogin(LoginModel user);
-		bool EducatorLogin(LoginModel loginModel);
+		User EducatorLogin(LoginModel loginModel);
 	} 
   
 }
