@@ -1,0 +1,61 @@
+@model IEnumerable<MVC_EduHub_Project.Models.Feedback>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>List</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.FeedbackId)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.feedback)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseId)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.FeedbackId)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.feedback)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td> *@
+            @* <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td> *@
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="MyCourse" asp-controller="Course">Back to course</a>
+</p>

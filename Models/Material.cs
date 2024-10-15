@@ -13,5 +13,6 @@ namespace MVC_EduHub_Project.Models
 	  public DateTime UploadDate { get; set; }
 	  public string ContentType { get; set; }
 	  public int CourseId { get; set; }
-	}
+       
+    }
 }

@@ -1,0 +1,69 @@
+@model IEnumerable<MVC_EduHub_Project.MyCourses>
+
+@{
+    ViewData["Title"] = "List Of My Course";
+    @* TempData["UserId"]="id"; *@
+}
+
+<h1>List of My Enroll Courses</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.CourseId)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.courseStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.courseEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.level)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                    @* <td>
+                    @Html.DisplayFor(modelItem => item.CourseId)
+                </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.courseStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.courseEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.level)
+                </td>
+                
+                <td>
+                        <a asp-controller="Material" asp-action="MaterialForCourse" asp-route-id=@item.CourseId>MaterialForthatCourse</a> |
+                        <a asp-controller="Feedback" asp-action="AddFeedback" asp-route-id=@item.CourseId>GiveFeedBack</a> 
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="User" asp-action="StudentIndex">Back to Index</a>

@@ -25,22 +25,21 @@
                             <a class="nav-link active" asp-controller="Course" asp-action="AllCourses">AllCourses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="CoursesAvailable">CoursesAvailable</a>
+                            <a class="nav-link" asp-controller="Course"
+                                asp-action="MyCoursesStatusAccepted">MyCourses</a>
                         </li>
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link" asp-controller="Student" asp-action="SubmitEnquiry">SubmitEnquiry</a>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="MyEnrollments">MyEnrollments</a>
+                            <a class="nav-link" asp-controller="Enrollment"
+                                asp-action="GetEnrollmentByUserId">MyEnrollments</a>
                         </li>
+                        @* <li class="nav-item">
+                            <a class="nav-link" asp-controller="Feedback" asp-action="AddFeedback">GiveFeedback</a>
+                        </li> *@
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="EnloreForCourse">EnloreForCourse</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="Feedback">Feedback</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="User" asp-action="StudentLogOut">StudentLogOut</a>
+                            <a class="nav-link" asp-controller="User" asp-action="LogOut">LogOut</a>
                         </li>
                     </ul>
                 </div>

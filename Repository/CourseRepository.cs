@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using MVC_EduHub_Project.Models;
 using MVC_EduHub_Project.Services;
 
@@ -19,7 +20,7 @@ namespace MVC_EduHub_Project.Repository
 			_context.SaveChanges();
 			return course;
 		}
-		public List<Course> GetCreatedCourse(int id)
+		public List<Course> GetCreatedCourseByUser(int id)
 		{
 			//System.Console.WriteLine("ID is "+id);
 			List<Course> data = _context.Courses.Where(x => x.userId ==id).ToList();
@@ -32,6 +33,12 @@ namespace MVC_EduHub_Project.Repository
 			// }
 			return data;
 		}
+		public Course GetCreatedCourseByCourseId(int id)
+		{
+
+			var data = _context.Courses.FirstOrDefault(x => x.CourseId ==id);
+			return data;
+		}
 
 		public List<Course> AllCourses()
 		{
@@ -40,30 +47,36 @@ namespace MVC_EduHub_Project.Repository
 			throw new NotImplementedException();
 		}
 
-		public Course EditCourse(int id)
+		public Course EditCourse(Course newcourse,int id)
 		{
-			//System.Console.WriteLine("Id is "+course.CourseId);
+			
 			var data = _context.Courses.FirstOrDefault(x => x.CourseId ==id);
-		    _context.Courses.Update(data);
-			_context.SaveChanges();
-			//System.Console.WriteLine("data is "+data.Description);
+			//  _context.Courses.Update(newcourse);
+			data.Title = newcourse.Title;
+			data.Description = newcourse.Description;
+			data.courseStartDate = newcourse.courseStartDate;
+			data.courseStartDate = newcourse.courseStartDate;
+			data.category = newcourse.category;
+			data.level = newcourse.level;
+			
+			 _context.SaveChanges();
 			return data;
 			throw new NotImplementedException();
 		}
 
-		public Course DeleteCourse(int id)
-		{
-			var data = _context.Courses.FirstOrDefault(x => x.CourseId == id);
-			_context.Courses.Remove(data);
-			return data;
-			throw new NotImplementedException();
-		}
-
+		
 		public Course DetailsCourse(int id)
 		{
 			Course data = _context.Courses.FirstOrDefault(x => x.CourseId == id);
 			return data;
 			throw new NotImplementedException();
+		}
+
+		public IEnumerable<MyCourses> GetMyCourseStatusAccpeted(int id)
+		
+		{
+			var data = _context.getCourseStatusAccepted.FromSqlInterpolated($"SP_MyCourses {id}"); 
+			return data;
 		}
 	}
 }

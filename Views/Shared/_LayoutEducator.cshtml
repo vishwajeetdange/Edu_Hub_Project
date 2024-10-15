@@ -24,23 +24,27 @@
                         <li class="nav-item">
                             <a class="nav-link active" asp-controller="Course" asp-action="MyCourse">MyCourses</a>
                         </li>
+                        @* <li class="nav-item">
+                            <a class="nav-link active" asp-controller="Course" asp-action="MyCourse"
+                                asp-route-id="@TempData["EducatorId"]">MyCourses</a>
+                        </li> *@
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Course" asp-action="AddCourse">New Course</a>
+                        <a class="nav-link" asp-controller="Course" asp-action="AllCourse">AllCourses</a>
                         </li>
-                        <li class="nav-item">
+                        @* <li class="nav-item">
                             <a class="nav-link" asp-controller="Course" asp-action="NewMaterial">New Material</a>
+                        </li> *@
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Enquiry" asp-action="EnquiryList">Enquiry List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Course" asp-action="EnquiryList">Enquiry List</a>
+                            <a class="nav-link" asp-controller="Enrollment" asp-action="GetEnrollCourse">EnrollCourses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Course" asp-action="Enrollment">Enrollment</a>
+                            <a class="nav-link" asp-controller="Feedback" asp-action="GetFeedback">FeedbackForMyCourses</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Student" asp-action="Feedback">Feedback</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="User" asp-action="EducatorLogOut">EducatorLogOut</a>
+                            <a class="nav-link" asp-controller="User" asp-action="LogOut">LogOut</a>
                         </li>
                     </ul>
                 </div>

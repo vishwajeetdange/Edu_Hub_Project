@@ -8,13 +8,14 @@ namespace MVC_EduHub_Project.Services
 	{
 		Course CreateCourse(Course newcourse);
 
-		List<Course> GetCreatedCourse(int id);
+		List<Course> GetCreatedCourseByUser(int id);
+		Course GetCreatedCourseByCourseId(int id);
 		List<Course> AllCourses();
 
-		Course EditCourse(int id);
-		Course DeleteCourse(int id);
-		
+		Course EditCourse(Course newcourse, int id);
 		Course DetailsCourse(int id);
+		IEnumerable<MyCourses> GetMyCourseStatusAccpeted(int id);
+
 
 	}
 

@@ -1,0 +1,42 @@
+@model MVC_EduHub_Project.Course
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center">Course Details</h1>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <dl class="row">
+            <dt class="col-sm-3">Title</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Title)</dd>
+
+            <dt class="col-sm-3">Description</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Description)</dd>
+
+            <dt class="col-sm-3">Start Date</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.courseStartDate)</dd>
+
+            <dt class="col-sm-3">End Date</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.courseEndDate)</dd>
+
+            <dt class="col-sm-3">Category</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.category)</dd>
+
+            <dt class="col-sm-3">Level</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.level)</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="text-center">
+    <button class="btn btn-primary"
+        onclick="location.href='@Url.Action("AddEnquiry", "Enquiry", new { id = Model.CourseId })'">Enquiry for
+        Course</button>
+    <button class="btn btn-primary"
+        onclick="location.href='@Url.Action("AddEnrollment", "Enrollment", new { id = Model.CourseId })'">Enroll for
+        Course</button>
+    <button class="btn btn-secondary" onclick="location.href='@Url.Action("AllCourses", "Course")'">Back to
+        Courses</button>
+</div>

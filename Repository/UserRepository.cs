@@ -26,18 +26,18 @@ namespace MVC_EduHub_Project.Repository
 		}
 
 
-		public bool StudentLogin(LoginModel user)
+		public User StudentLogin(LoginModel user)
 		{
 			//select * from users where username=user.username and password = user.password and role="Student"; 
 			var user1 = _context.Users.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password && u.Role=="Student");
-			 if (user1 != null)
+			if (user1 != null)
 			 {
-				return true;
+				return user1;
 			 }
 			else
 				
 			{
-				return false;
+				return null;
 			}
 								
 		//	throw new NotImplementedException();

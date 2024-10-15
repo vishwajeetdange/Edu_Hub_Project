@@ -1,0 +1,51 @@
+@model MVC_EduHub_Project.Models.Feedback
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Give FeedBack For Course</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddFeedback">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div class="form-group">
+                <label asp-for="FeedbackId" class="control-label"></label>
+                <input asp-for="FeedbackId" class="form-control" />
+                <span asp-validation-for="FeedbackId" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="feedback" class="control-label"></label>
+                <input asp-for="feedback" class="form-control" />
+                <span asp-validation-for="feedback" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseId" class="control-label"></label>
+                <input asp-for="CourseId" class="form-control" />
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="User" asp-action="StudentIndex">Back to IndexPage</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using MVC_EduHub_Project.Services;
 using MVC_EduHub_Project.Repository;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MVC_EduHub_Project.Controllers
 {
@@ -26,24 +27,46 @@ namespace MVC_EduHub_Project.Controllers
 	  public IActionResult AddCourse()
 	  
 	  {
-	  	return	View();
+			List<SelectListItem> courselevel = new List<SelectListItem>()
+				{
+				new SelectListItem { Text = "Beginner", Value = "Beginner" },
+				new SelectListItem{ Text="Advanced",Value="Advanced"},
+				new SelectListItem{ Text="Intermediate",Value="Intermediate"},
+				};
+			ViewBag.level = courselevel;
+			return	View();
 		
 	  }
 		[HttpPost]
 		public IActionResult AddCourse(Course course)
 
 		{
+			
+			course.userId = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
 			_courseservice.CreateCourse(course);
 			return RedirectToAction("EducatorIndex", "User");
 
 		}
 
 		[HttpGet]
-		public IActionResult MyCourse(int id)
+		public IActionResult MyCourse()
 
 		{
-			id = (int)TempData["UserId"];
-			var data =_courseservice.GetCreatedCourse(id);
+			//var id = Convert.ToInt32(TempData["EducatorId"]);
+			
+			var id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+			var data =_courseservice.GetCreatedCourseByUser(id);
+			return View(data);
+
+		}
+		[HttpGet]
+		public IActionResult MyCoursesStatusAccepted()
+
+		{
+			//var id = Convert.ToInt32(TempData["EducatorId"]);
+			
+			var id = Convert.ToInt32(HttpContext.Session.GetString("StudUserId"));
+			var data =_courseservice.GetMyCourseStatusAccpeted(id);
 			return View(data);
 
 		}
@@ -56,25 +79,40 @@ namespace MVC_EduHub_Project.Controllers
 			return View(data);
 
 		}
+		public IActionResult AllCourse()
+
+		{
+
+			var data = _courseservice.AllCourses();
+			return View(data);
+
+		}
 		
 		[HttpGet]
 		public IActionResult Edit(int id)
 		
 		{
-			//System.Console.WriteLine("Cours id" + id);
-			var data =_courseservice.DetailsCourse(id);
+			List<SelectListItem> courselevel = new List<SelectListItem>()
+				{
+				new SelectListItem { Text = "Beginner", Value = "Beginner" },
+				new SelectListItem{ Text="Advanced",Value="Advanced"},
+				new SelectListItem{ Text="Intermediate",Value="Intermediate"},
+				};
+			ViewBag.level = courselevel;
+			var data =_courseservice.GetCreatedCourseByCourseId(id);
 			return	View(data);
 		}
 
 
 		[HttpPost]
-		public IActionResult Edit(int id,Course course)
+		public IActionResult Edit(Course course, int id)
 
 		{
+			
 			//System.Console.WriteLine("Id in controleler : "+id);
-			_courseservice.EditCourse(id);
+			_courseservice.EditCourse(course,id);
 			return RedirectToAction("MyCourse", "Course");
-			//var data = _courseservice.EditCourse(id);
+			
 			
 		}
 
@@ -85,25 +123,14 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _courseservice.DetailsCourse(id);
 			return View(data);
 		}
-
 		[HttpGet]
-		public IActionResult Delete(int id)
+		public IActionResult ShowDetails(int id)
 
 		{
-			//System.Console.WriteLine("Cours id" + id);
 			var data = _courseservice.DetailsCourse(id);
 			return View(data);
 		}
-		[HttpPost]
-		public IActionResult Delete(Course course,int id)
 
-		{
-			//System.Console.WriteLine("Cours id" + id);
-			var data = _courseservice.DeleteCourse(id);
-			return RedirectToAction("MyCourse", "Course");
-			
-		}
-		
 		
 
 	}

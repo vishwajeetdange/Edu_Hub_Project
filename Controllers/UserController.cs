@@ -71,7 +71,9 @@ public class UserController : Controller
 	public IActionResult Student_Login(LoginModel loginModel)
 
 	{
-		if (_userservice.StudentLogin(loginModel))
+     		var data = _userservice.StudentLogin(loginModel);
+			HttpContext.Session.SetString("StudUserId", data.UserId.ToString());
+		if (data != null)
 		{
 			TempData["Student"] = loginModel.UserName;
 			return RedirectToAction("StudentIndex", "User");
@@ -102,12 +104,15 @@ public class UserController : Controller
 		// }
 		var data = _userservice.EducatorLogin(loginModel);
 		 //  var id =data.UserId;
-		 	TempData["UserId"]=data.UserId;
+		 HttpContext.Session.SetString("UserId",data.UserId.ToString());
+		 	// TempData["UserId"]=data.UserId;
 		 //  System.Console.WriteLine("id is : "+id);
 		if (data != null)
 		
 		{
 			TempData["Educator"] = loginModel.UserName;
+		//	TempData["EducatorId"] = data.UserId;
+			TempData.Keep();			
 			return RedirectToAction("EducatorIndex", "User");
 		}
 		else
@@ -116,14 +121,14 @@ public class UserController : Controller
 			return RedirectToAction("Educator_Login", "User");
 		}
 	}
-	public ActionResult StudentLogOut()
+	public ActionResult LogOut()
 	{
 		return RedirectToAction("Index", "Home");
 	}
-	public ActionResult EducatorLogOut()
-	{
-		return RedirectToAction("Index", "Home");
-	}
+	// public ActionResult EducatorLogOut()
+	// {
+	// 	return RedirectToAction("Index", "Home");
+	// }
 
 
 }

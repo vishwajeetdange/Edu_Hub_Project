@@ -8,7 +8,8 @@ namespace MVC_EduHub_Project.Models
 	  [Key]
 	  public int EnrollmentId { get; set; }
 	  public DateTime EnrollmentDate { get; set; }
-	  public string Status { get; set; }
+	  
+	  public string Status { get; set; }="Pending";
 	  public int UserId { get; set; }
 	  public int CourseId { get; set; }
 	  

@@ -1,0 +1,36 @@
+@model IEnumerable<MVC_EduHub_Project.Models.GetCourseIdCourseName>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2 class="text-center">Enquiry For My Courses</h2>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Title)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem
+                             => item.Title)</td>
+                <td>
+                    <button class="btn btn-danger 
+ btn-sm">
+                        <a asp-controller="Enquiry" asp-action="GetEnquiryByCourseId" asp-route-id="@item.CourseId">Check
+                            Enquiry</a>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <a asp-controller="User" asp-action="EducatorIndex" class="btn btn-secondary">Back to DashBord</a>
+</div>
