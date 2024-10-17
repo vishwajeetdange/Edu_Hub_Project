@@ -1,4 +1,4 @@
-@model MVC_EduHub_Project.User
+@model MVC_EduHub_Project.UserCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -19,20 +19,14 @@
             <div class="form-group">
                 <label asp-for="UserName" class="control-label"></label>
                 <input asp-for="UserName" class="form-control" />
-                <span   asp-validation-for="UserName" class="text-danger"></span>
+                <span  asp-validation-for="UserName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
-            </div>  
+            </div> 
 
-            @* <div class="form-group">
-            <label asp-for="ConfirmPassword" class="control-label"></label>
-            <input asp-for="ConfirmPassword" class="form-control" />
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>  
-
-            </div> *@
             <div class="form-group">
                 <label asp-for="Role" class="control-label"></label>
                 @* <input asp-for="Role" class="form-control"  
@@ -43,7 +37,7 @@
                 <span asp-validation-for="Role" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>  
+                <label asp-for="Email" class="control-label"></label> 
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
@@ -52,18 +46,31 @@
                 <input asp-for="Mobile_no" class="form-control" />
                 <span asp-validation-for="Mobile_no" class="text-danger"></span>
             </div>
-            <div class="form-group">  
+            @* <div class="form-group"> 
 
                 <label asp-for="ProfileImage" class="control-label"></label>
                 <input asp-for="ProfileImage" class="form-control-file"   type="file" />
                 <span asp-validation-for="ProfileImage" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
-                <input type="submit" value="Create"   class="btn btn-primary" />
+                <label asp-for="Photo" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <div class="custom-file">
+                        <input asp-for="Photo" type="file" class="custom-file-input">
+                        <!-- Added type=file for file input -->
+                        @* <label class="custom-file-label">Choose File....</label> *@
+                    </div>
+                    <span asp-validation-for="Photo" class="text-danger"></span>
+                    <!-- Added validation span for Photo -->
+                </div>
+            </div>
+           <br>
+            <div class="form-group">
+                <input type="submit" value="Create"  class="btn btn-primary" />
             </div>
         </form>
         <div>
-            <a asp-controller="Home" asp-action="Index">Back to List</a>
+            <a asp-controller="Home" asp-action="Index">Back to DashBoard</a>
         </div>
     </div>
 </div>
@@ -72,6 +79,6 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }  
+    } 
 
 }

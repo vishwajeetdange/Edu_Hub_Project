@@ -5,7 +5,7 @@ namespace MVC_EduHub_Project.Services
 {
 	public interface IEnquiryService
 	{
-		IEnumerable<Enquiry> GetEnqueryByCourseId(int courseId);
+		IEnumerable<GetEnquiryByCourseId> GetEnqueryByCourseId(int courseId);
 		Enquiry GetEnqueryByEnquiryId(int enquiryId);
 		bool DeleteEnquery(int id);
 		Enquiry EditEnquiry(Enquiry enquiry, int id);

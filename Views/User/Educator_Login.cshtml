@@ -24,14 +24,14 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div> 
 
-
-            <div class="form-group">
+            <br>
+            <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>
 
-        <div >
-            <a asp-controller="Home" asp-action="Index">Back to List</a>
+        <div class="text-center mt-3">
+            <a asp-controller="Home" asp-action="Index" class="text-secondary">Back to DashBoard</a>
         </div>
     </div>
 </div> 
@@ -39,7 +39,7 @@
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");  
+        await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
 
     }
 }

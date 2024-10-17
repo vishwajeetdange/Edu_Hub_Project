@@ -20,9 +20,11 @@ namespace MVC_EduHub_Project
 
 		[Required]
 		public string Role { get; set; }
+		
 		[Required]
 		[DataType(DataType.EmailAddress)]
 		public string Email	 { get; set; }
+		
 		[Phone(ErrorMessage = "Enter valid Phone number")]
 		[Required]
 		public string Mobile_no { get; set; }

@@ -1,9 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var photo =  "~/assets/images/bg.jpg";
 }
 
-<div class="container  align-items-center justify-content-center vh-100">
-    <h1 class="display-4 mb-4">Welcome EduHub_Project</h1>
-    @* <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
-    <img src="~/assests/images/Login.png" alt="login page" height="400px" width="700px"/>
+<style>
+    .maindiv
+    {   
+        height: 540px;
+        width: 100%;
+        background-image: url("https://watermark.lovepik.com/photo/50053/8233.jpg_wh1200.jpg");
+        background-size: cover;
+    }
+</style>
+
+<div class="maindiv d-flex justify-content- align-items-center flex-column position-absolute top-3 ">
+    <h1 class="display-4 text-center fw-bolder justify-content-center w-100  top-5"
+        style="color: rgb(255, 202, 127); position: relative;top:84px">
+        <p>
+
+        Welcome EduHub Project
+        </p>
+        
+        </h1>
+    <h6 class="   " style="margin-left: 800px; color: rgb(255, 0, 183); position: relative;top:84px"">By ~ Vishwajeet Dange</h6>
+   
+    @* <img src="~/assests/images/bg.jpg" alt="login page" height="350px" width="1100px" /> *@
 </div>
+
+
+
+
+

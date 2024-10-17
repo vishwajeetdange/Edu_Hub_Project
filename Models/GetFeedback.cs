@@ -7,6 +7,7 @@ namespace MVC_EduHub_Project.Models
 	public class GetFeedback
 	{
 		[Key]
+		public int feedbackId { get; set; }
 		public int CourseId { get; set; }
 		public string Title { get; set; }
 		public string feedback { get; set; }

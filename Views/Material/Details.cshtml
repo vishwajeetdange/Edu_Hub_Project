@@ -4,56 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1 class="text-center text-primary mb-4">Details Of Material</h1>
 
-<div>
-   
-    <dl class="row">
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaterialId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaterialId)
-        </dd> *@
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.URL)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.URL)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.UploadDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.UploadDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ContentType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ContentType)
-        </dd>
-        @* <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CourseId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CourseId)
-        </dd> *@
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.MaterialId }) |
-    <a asp-controller="Material" asp-action="GetMaterialByCourseId" asp-route-id=@Model.CourseId>Back to List</a>
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0">Material Information</h5>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.URL)
+                </dt>
+                <dd class="col-sm-9">
+                    <a href="@Html.DisplayFor(model => model.URL)" class="text-info"
+                        target="_blank">@Html.DisplayFor(model => model.URL)</a>
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.UploadDate)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.UploadDate)
+                </dd>
+                <dt class="col-sm-3 font-weight-bold">
+                    @Html.DisplayNameFor(model => model.ContentType)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.ContentType)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer text-right">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.MaterialId }, new { @class = "btn btn-warning" })
+            <a asp-controller="Material" asp-action="GetMaterialByCourseId" asp-route-id=@Model.CourseId
+                class="btn btn-secondary">Back to Material</a>
+        </div>
+    </div>
 </div>

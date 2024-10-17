@@ -35,9 +35,7 @@
                             <a class="nav-link" asp-controller="Enrollment"
                                 asp-action="GetEnrollmentByUserId">MyEnrollments</a>
                         </li>
-                        @* <li class="nav-item">
-                            <a class="nav-link" asp-controller="Feedback" asp-action="AddFeedback">GiveFeedback</a>
-                        </li> *@
+                        
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="User" asp-action="LogOut">LogOut</a>
                         </li>
@@ -48,18 +46,48 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @{
+                var errorMessage = TempData["errormsg"]?.ToString();
+                var successMessage = TempData["successmsg"]?.ToString();
+            }
+            @if (!string.IsNullOrWhiteSpace(@successMessage))
+            {
+                <div class="alert alert-success">
+                    <b>
+                        Success: <b>
+                            @successMessage
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="close"
+                                value="ok"></button>
+                </div>
+
+            }
+
+            else if (!string.IsNullOrWhiteSpace(@errorMessage))
+            {
+                <div class="alert alert-danger">
+                    <b>
+                        Error :<b>
+                            @errorMessage
+                        </b>
+                        <button type="button" class="btn-cloase float-end" data-bs-dismiss="alert" aria-label="Close"
+                            value="Ok"></button>
+
+
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        @* <div class="container">
             &copy; 2024 - MVC_EduHub_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        </div> *@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Custom.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

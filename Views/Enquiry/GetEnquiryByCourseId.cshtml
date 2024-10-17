@@ -1,4 +1,4 @@
-@model IEnumerable<MVC_EduHub_Project.Models.Enquiry>
+@model IEnumerable<MVC_EduHub_Project.Models.GetEnquiryByCourseId>
 
 @{
     ViewData["Title"] = "List";
@@ -10,13 +10,13 @@
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.Subject)</th>
-            <th>@Html.DisplayNameFor(model => model.Message)</th>  
-
-
-            <th>@Html.DisplayNameFor(model
-                         => model.EnquiryDate)</th>
+            <th>@Html.DisplayNameFor(model => model.Message)</th> 
+            <th>@Html.DisplayNameFor(model=> model.EnquiryDate)</th>
             <th>@Html.DisplayNameFor(model => model.Status)</th>
-            <th>@Html.DisplayNameFor(model => model.Response)</th>
+            <th>
+                StudentName
+                @* @Html.DisplayNameFor(model => model.UserName) *@
+                </th>
             <th>Action</th>
         </tr>
     </thead>
@@ -25,20 +25,17 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Subject)</td> 
-
-
                 <td>@Html.DisplayFor(modelItem => item.Message)</td>
-                <td>@Html.DisplayFor(modelItem
-                             => item.EnquiryDate)</td>
+                <td>@Html.DisplayFor(modelItem=> item.EnquiryDate)</td>
                 <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                <td>@Html.DisplayFor(modelItem => item.Response)</td>
+                <td>@Html.DisplayFor(modelItem => item.UserName)</td>
                 <td>
                     <button class="btn btn-dark btn-sm">
                         <a asp-action="Edit" asp-route-id="@item.EnquiryId">Edit</a>
                     </button>
-                    <button class="btn btn-dark btn-sm">
+                    @* <button class="btn btn-dark btn-sm">
                         <a asp-action="Delete" asp-route-id="@item.EnquiryId">Delete</a>
-                    </button>
+                    </button> *@
                 </td>
             </tr>
         }

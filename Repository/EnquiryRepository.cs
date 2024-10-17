@@ -20,11 +20,13 @@ namespace MVC_EduHub_Project.Repository
 			return newEnquiry;
 		}
 
-		public IEnumerable<Enquiry> GetEnqueryByCourseId(int courseId)
+		public IEnumerable<GetEnquiryByCourseId> GetEnqueryByCourseId(int courseId)
 		{
-			var data = _context.Enquiries.Where(en => en.CourseId== courseId).ToList();
+			var data = _context.getEnquiryByCourseId.FromSqlInterpolated($"SP_GetEnquiryByCourseId {courseId}");
 			return data;
-			throw new NotImplementedException();
+			// var data = _context.Enquiries.Where(en => en.CourseId== courseId).ToList();
+			// return data;
+			
 		}
 	 public	IEnumerable<GetCourseIdCourseName> GetCourseIdCourseName(int id)
 

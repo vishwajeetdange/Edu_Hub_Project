@@ -25,10 +25,12 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                CourseName
+                @* @Html.DisplayNameFor(model => model.Title) *@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                StudantName
+                @* @Html.DisplayNameFor(model => model.UserName) *@
             </th>
             <th></th>
         </tr>
@@ -71,5 +73,5 @@
     </tbody>
 </table>
 <p>
-    <a asp-action="EducatorIndex" asp-controller="User">Back to Index</a>
+    <a class="btn btn-secondary" asp-action="EducatorIndex" asp-controller="User">Back to DashBoard</a>
 </p>

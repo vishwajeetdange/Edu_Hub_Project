@@ -23,6 +23,7 @@ namespace MVC_EduHub_Project.Models
 		 public DbSet<MyCourses> getCourseStatusAccepted { get; set; }
 		 public DbSet<GetEnrollCourse> getGetEnrollCourse { get; set; }
 		 public DbSet<GetFeedback> getFeedback { get; set; }
+		 public DbSet<GetEnquiryByCourseId> getEnquiryByCourseId { get; set; }
 
 	}
 }

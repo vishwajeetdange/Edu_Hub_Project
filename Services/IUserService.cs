@@ -9,6 +9,10 @@ namespace MVC_EduHub_Project.Services
 		User CreateUser(User newuser);
 		User StudentLogin(LoginModel user);
 		User EducatorLogin(LoginModel loginModel);
-	} 
-  
+		User StudentData(int id);
+		User EducatorData(int id);
+
+
+	}
+
 }

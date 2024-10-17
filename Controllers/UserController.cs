@@ -5,6 +5,7 @@ using MVC_EduHub_Project.Models;
 using MVC_EduHub_Project.Repository;
 using MVC_EduHub_Project.Services;
 using NuGet.Protocol.Core.Types;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace MVC_EduHub_Project.Controllers;
 
@@ -12,10 +13,12 @@ public class UserController : Controller
 {
 	//public	readonly	UserRepository _userRepository =null;
 	public readonly IUserService _userservice;
-	public UserController(IUserService userservice)
+	private readonly IHostingEnvironment _hostEnviroment;
+	public UserController(IUserService userservice, IHostingEnvironment hostEnviroment)
 
 	{
 		_userservice = userservice;
+		_hostEnviroment = hostEnviroment;
 
 	}
 
@@ -25,11 +28,15 @@ public class UserController : Controller
 	}
 	public IActionResult EducatorIndex()
 	{
-		return View();
+		var id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
+		var data = _userservice.EducatorData(id);
+		return View(data);
 	}
 	public IActionResult StudentIndex()
 	{
-		return View();
+		var id = Convert.ToInt32(HttpContext.Session.GetString("StudUserId"));
+		var data = _userservice.StudentData(id);
+		return View(data);
 	}
 
 	[HttpGet]
@@ -42,7 +49,7 @@ public class UserController : Controller
 			List<SelectListItem> userroles = new List<SelectListItem>()
 				{
 				new SelectListItem { Text = "Educator", Value = "Educator" },
-				new SelectListItem{ Text="Student",Value="student"},
+				new SelectListItem{ Text="Student",Value="Student"},
 				};
 			ViewBag.role = userroles;
 			return View();
@@ -55,10 +62,45 @@ public class UserController : Controller
 		return View();
 	}
 	[HttpPost]
-	public IActionResult AddUser(User newuser)
+	public IActionResult AddUser(UserCreateViewModel model)
 	{
-		_userservice.CreateUser(newuser);
-		return RedirectToAction("Index", "Home");
+		try
+		{
+		if (ModelState.IsValid)
+		{
+			string uniqueFileName = null;
+			if (model.Photo != null)
+			{
+				string uploadsFolder = Path.Combine(_hostEnviroment.WebRootPath, "assests/userimages");
+				uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+			}
+			User newuser = new User
+
+			{
+				UserName = model.UserName,
+				Password = model.Password,
+				Role = model.Role,
+				Email = model.Email,
+				Mobile_no = model.Mobile_no,
+				ProfileImage = uniqueFileName
+
+			};
+
+			_userservice.CreateUser(newuser);
+			TempData["successmsg"] = "Registration SuccessFull";
+			return RedirectToAction("Index", "Home");
+		
+		}
+		}
+		catch (Exception ex)
+
+		{
+			TempData["errormsg"] = ex.Message;
+		}
+			return View();
+		
 	}
 
 	[HttpGet]
@@ -67,22 +109,26 @@ public class UserController : Controller
 	{
 		return View();
 	}
+
 	[HttpPost]
 	public IActionResult Student_Login(LoginModel loginModel)
 
-	{
-     		var data = _userservice.StudentLogin(loginModel);
-			HttpContext.Session.SetString("StudUserId", data.UserId.ToString());
-		if (data != null)
-		{
-			TempData["Student"] = loginModel.UserName;
-			return RedirectToAction("StudentIndex", "User");
-		}
-		else
-		{
-			//System.Console.WriteLine("Not login");
-			return RedirectToAction("Student_Login", "User");
-		}
+	{	
+				var data = _userservice.StudentLogin(loginModel);
+				if (data != null)
+				{
+					HttpContext.Session.SetString("StudUserId", data.UserId.ToString());
+					TempData["Student"] = loginModel.UserName;
+					TempData.Keep();
+					TempData["successmsg"] = "Login SuccessFull";
+					return RedirectToAction("StudentIndex", "User");
+				}
+				else
+				{
+					TempData["errormsg"] = "Login Failed!";
+					return View();
+				}
+		
 	}
 
 	[HttpGet]
@@ -91,44 +137,34 @@ public class UserController : Controller
 	{
 		return View();
 	}
+	
+	
 	[HttpPost]
 	public IActionResult Educator_Login(LoginModel loginModel)
 
 	{
-		// if (_userservice.EducatorLogin(loginModel))
-		// {
-		// 	//System.Console.WriteLine("Sucssefull");
-		// 	TempData["Educator"] = loginModel.UserName;
-		// //	TempData["UserId"] = loginModel.UserId;
-		// 	return RedirectToAction("EducatorIndex", "User");
-		// }
-		var data = _userservice.EducatorLogin(loginModel);
-		 //  var id =data.UserId;
-		 HttpContext.Session.SetString("UserId",data.UserId.ToString());
-		 	// TempData["UserId"]=data.UserId;
-		 //  System.Console.WriteLine("id is : "+id);
-		if (data != null)
 		
+		var data = _userservice.EducatorLogin(loginModel);		
+		
+		if (data != null)
+
 		{
+		HttpContext.Session.SetString("UserId", data.UserId.ToString());
 			TempData["Educator"] = loginModel.UserName;
-		//	TempData["EducatorId"] = data.UserId;
-			TempData.Keep();			
+			TempData.Keep();
+			TempData["successmsg"] = "Login SuccessFull";
 			return RedirectToAction("EducatorIndex", "User");
 		}
 		else
 		{
-			//System.Console.WriteLine("Not login");
-			return RedirectToAction("Educator_Login", "User");
+			TempData["errormsg"] = "Login Failed!";
+			return View();
 		}
 	}
 	public ActionResult LogOut()
 	{
 		return RedirectToAction("Index", "Home");
 	}
-	// public ActionResult EducatorLogOut()
-	// {
-	// 	return RedirectToAction("Index", "Home");
-	// }
 
-
+	
 }

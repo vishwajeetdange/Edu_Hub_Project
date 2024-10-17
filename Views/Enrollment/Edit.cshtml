@@ -37,20 +37,19 @@
                 <input asp-for="CourseId" class="form-control" />
                 <span asp-validation-for="CourseId" class="text-danger"></span>
             </div> *@
+            <br>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br>
 <div>
     @* <a class="nav-link" asp-controller="Enrollment" asp-action="GetEnrollmentByCourseId"
         asp-route-id=@Model.CourseId>Back to
         List</a> *@
-    <a class="nav-link" asp-controller="Enrollment" asp-action="GetEnrollCourse"
-        >Back to
-        LastPage</a>
+    <a class="btn btn-secondary" asp-controller="Enrollment" asp-action="GetEnrollCourse">Back to Enroll</a>
 </div>
 
 @section Scripts {

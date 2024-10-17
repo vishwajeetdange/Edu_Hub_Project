@@ -4,10 +4,10 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Add New Enquiry </h2>
+<h2 class=" text-center justify-content-center">Add New Enquiry </h2>
 
 <hr />
-<div class="row">
+<div class="row justify-content-center">
     <div class="col-md-4">
         <form asp-action="AddEnquiry">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" disabled />
+                <input asp-for="Status" class="form-control"  />
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,15 +51,16 @@
                 <input asp-for="CourseId" class="form-control" />
                 <span asp-validation-for="CourseId" class="text-danger"></span>
             </div> *@
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <br>
+            <div class="form-group text-center">
+                <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-controller="Course" asp-action="AllCourses">Back to List</a>
+<br>
+<div class="text-center">
+    <a class="btn btn-secondary "  asp-controller="Course" asp-action="AllCourses">Back to Courses</a>
 </div>
 
 @section Scripts {

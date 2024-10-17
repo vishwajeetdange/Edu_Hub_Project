@@ -40,13 +40,11 @@ namespace MVC_EduHub_Project.Repository
 				return null;
 			}
 								
-		//	throw new NotImplementedException();
 		}
 	public User EducatorLogin(LoginModel loginModel)
 		{
 			var user2 = _context.Users.FirstOrDefault(u => u.UserName == loginModel.UserName && u.Password == loginModel.Password && u.Role == "Educator");
 			
-			//System.Console.WriteLine(user2.UserId);
 			if (user2 != null)
 			{
 				return user2;
@@ -56,9 +54,21 @@ namespace MVC_EduHub_Project.Repository
 			{
 				return null;
 			}
-			//throw new NotImplementedException();
 		}
 
-		
+	public User StudentData(int id)
+	
+	{
+		var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
+		return data;
+	}
+	public User EducatorData(int id)
+	
+	{
+		var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
+		return data;
+	}
+
+			
 	}
 }

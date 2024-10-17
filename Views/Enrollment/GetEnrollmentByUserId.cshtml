@@ -4,14 +4,11 @@
     ViewData["Title"] = "List";
 }
 
-<h1>List Of Enrollemented  Courses</h1>
+<h1 class="text-center my-4">List Of Enrollemented Courses</h1>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered">
+    <thead class="thead-light">
         <tr>
-            @* <th>
-            @Html.DisplayNameFor(model => model.UserId)
-            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.EnrollmentDate)
             </th>
@@ -19,18 +16,15 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-            @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                @* <td>
-                     @Html.DisplayFor(modelItem => item.UserId)
-                </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.EnrollmentDate)
                 </td>
@@ -38,13 +32,14 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
-                
+               
             </tr>
         }
     </tbody>
 </table>
+
 <p>
-    <a asp-action="StudentIndex" asp-controller="User">Back to DashBord</a>
+    <a class="btn btn-secondary" asp-action="StudentIndex" asp-controller="User">Back to DashBoard</a>
 </p>

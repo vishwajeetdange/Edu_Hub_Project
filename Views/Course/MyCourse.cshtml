@@ -2,45 +2,32 @@
 
 @{
     ViewData["Title"] = "List Of My Course";
-    @* TempData["UserId"]="id"; *@
 }
 
-<h1>List of MyCourses</h1>
+<h1 class="text-center text-primary my-4">List of My Courses</h1>
 
-<p>
-    <a asp-action="AddCourse" class="btn btn-primary">Create New Course</a>
-</p>
+
 <table class="table table-striped table-bordered table-hover">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            @* <th>
-            @Html.DisplayNameFor(model => model.CourseId)
-            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                @Html.DisplayNameFor(model
-                         => model.Description)
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.courseStartDate)  
-
+                @Html.DisplayNameFor(model => model.courseStartDate) 
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.courseEndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.category)  
-
+                @Html.DisplayNameFor(model => model.category) 
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.level)
             </th>
-            @* <th>
-            @Html.DisplayNameFor(model => model.userId)  
-
-            </th> *@
             <th>
                 Action
             </th>
@@ -50,47 +37,38 @@
         @foreach (var item in Model)
         {
             <tr>
-                @* <td>
-            @Html.DisplayFor(modelItem => item.CourseId)  
-
-            </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description)  
-
+                    @Html.DisplayFor(modelItem => item.Description) 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.courseStartDate)  
-
+                    @Html.DisplayFor(modelItem => item.courseStartDate) 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.courseEndDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.category)  
-
+                    @Html.DisplayFor(modelItem => item.category) 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.level)
                 </td>
-                @* <td>
-            @Html.DisplayFor(modelItem => item.userId)  
-
-            </td> *@
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-action="Edit" asp-route-id="@item.CourseId" class="btn btn-warning btn-sm">Edit</a>
                     <a asp-action="Details" asp-route-id="@item.CourseId" class="btn btn-info btn-sm">Details</a>
                     <a asp-controller="Material" asp-action="AddMaterial" asp-route-id="@item.CourseId"
                         class="btn btn-success btn-sm">Add Material</a>
-                    @* <a class="nav-link btn btn-secondary btn-sm" asp-controller="Feedback"
-                        asp-action="GetFeedbackByCourseId" asp-route-id="@item.CourseId">Course Feedback</a> *@
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<div>
-    <a asp-controller="User" asp-action="EducatorIndex">Back to List</a>
+<div class="text-center my-4">
+    <a asp-action="AddCourse" class="btn btn-success btn-lg">Add New Course</a>
+    <a asp-controller="User" asp-action="EducatorIndex" class="btn btn-secondary">Back to Dashboard</a>
 </div>
+@* <p class="text-center">
+    <a asp-action="AddCourse" class="btn btn-success btn-lg">Add New Course</a>
+</p> *@

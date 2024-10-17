@@ -11,6 +11,7 @@
 </p> *@
 <table class="table table-striped table-bordered table-hover">
     <thead>
+        
         <tr>
             @* <th>
             @Html.DisplayNameFor(model => model.MaterialId)  
@@ -71,6 +72,9 @@
                     <a asp-action="Edit" asp-route-id="@item.MaterialId" class="btn btn-primary btn-sm">Edit</a>
                     <a asp-action="Details" asp-route-id="@item.MaterialId" class="btn btn-info btn-sm">Details</a>
                     <a asp-action="Delete" asp-route-id="@item.MaterialId" class="btn btn-danger btn-sm">Delete</a>
+                    <a asp-controller="Course" asp-action="Details" asp-route-id=@item.CourseId
+                        class="btn btn-secondary btn-sm">Back</a>
+
                 </td>
             </tr>
         }

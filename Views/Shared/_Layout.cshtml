@@ -3,16 +3,22 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"   />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  />
     <title>@ViewData["Title"] - MVC_EduHub_Project</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MVC_EduHub_Project.styles.css" asp-append-version="true" />
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+</style>
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm " style="background-color: #324a34; color: white;">
             <div class="container">
                 @* <a class="navbar-brand"  asp-area="" asp-controller="Home" asp-action="Index">MVC_EduHub_Project</a>  *@
 
@@ -41,23 +47,54 @@
             </div>
         </nav>
     </header>
-    <div class="container mt-4">
+    <div class="">
         <main role="main" class="pb-3">
+            @{
+                var errorMessage = TempData["errormsg"]?.ToString();
+                var successMessage = TempData["successmsg"]?.ToString();
+            }
+            @if (!string.IsNullOrWhiteSpace(@successMessage))
+            {
+                <div class="alert alert-success">
+                    <b>
+                        Success: <b>
+                            @successMessage
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="close"
+                                value="ok"></button>
+                </div>
+
+            }
+
+            else if (!string.IsNullOrWhiteSpace(@errorMessage))
+            {
+                <div class="alert alert-danger">
+                    <b>
+                        Error :<b>
+                            @errorMessage
+                        </b>
+                        <button type="button" class="btn-cloase float-end" data-bs-dismiss="alert" aria-label="Close"
+                            value="Ok"></button>
+
+
+                </div>
+            }
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer  
  text-muted">
-        <div class="container">
+        @* <div class="container">
             &copy; 2024 
             - MVC_EduHub_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+        </div> *@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Custom.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

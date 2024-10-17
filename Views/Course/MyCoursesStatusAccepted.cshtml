@@ -2,21 +2,17 @@
 
 @{
     ViewData["Title"] = "List Of My Course";
-    @* TempData["UserId"]="id"; *@
 }
 
-<h1>List of My Enroll Courses</h1>
+<h1 class="text-center my-4">List of My Enroll Courses</h1>
 
-<table class="table">
-    <thead>
+<table class="table table-striped table-bordered">
+    <thead class="thead-light">
         <tr>
-            @* <th>
-                @Html.DisplayNameFor(model => model.CourseId)
-            </th> *@
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                CourseName
+                @* @Html.DisplayNameFor(model => model.Title) *@
             </th>
-            
             <th>
                 @Html.DisplayNameFor(model => model.courseStartDate)
             </th>
@@ -29,21 +25,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.level)
             </th>
-           
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                    @* <td>
-                    @Html.DisplayFor(modelItem => item.CourseId)
-                </td> *@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-               
                 <td>
                     @Html.DisplayFor(modelItem => item.courseStartDate)
                 </td>
@@ -56,14 +47,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.level)
                 </td>
-                
                 <td>
-                        <a asp-controller="Material" asp-action="MaterialForCourse" asp-route-id=@item.CourseId>MaterialForthatCourse</a> |
-                        <a asp-controller="Feedback" asp-action="AddFeedback" asp-route-id=@item.CourseId>GiveFeedBack</a> 
-                    
+                    <a class="btn btn-info btn-sm" asp-controller="Material" asp-action="MaterialForCourse"
+                        asp-route-id=@item.CourseId>Material For that Course</a>
+                    <a class="btn btn-success btn-sm text-dark" asp-controller="Feedback" asp-action="AddFeedback"
+                        asp-route-id=@item.CourseId>Give Feedback</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<a asp-controller="User" asp-action="StudentIndex">Back to Index</a>
+
+<a class="btn btn-secondary" asp-controller="User" asp-action="StudentIndex">Back to DashBoard</a>
