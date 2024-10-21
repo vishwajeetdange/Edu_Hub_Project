@@ -2,9 +2,10 @@
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_LayoutEducator.cshtml";
 }
 
-<h1>Course Details</h1>
+<h2>Course Details</h2>
 
 <div class="card">
     <div class="card-header">
@@ -67,5 +68,5 @@
 
 <div>
     <a asp-action="Edit" asp-route-id="@Model.CourseId" class="btn btn-primary btn-sm">Edit</a> |
-    <a asp-asp-controller="Course" asp-action="Mycourse" class="btn btn-secondary btn-sm">Back to List</a>
+    <a asp-asp-controller="Course" asp-action="Mycourse" class="btn btn-secondary btn-sm">Back to Course</a>
 </div>

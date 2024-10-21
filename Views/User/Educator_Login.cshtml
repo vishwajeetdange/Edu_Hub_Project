@@ -4,42 +4,96 @@
     ViewData["Title"] = "Educator Login";
 }
 
-<h2 class="text-center">Educator Login</h2>
+<link rel="stylesheet" href="~/css/site.css" />
 
-<hr />
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <form asp-action="Educator_Login" class="border p-4 rounded shadow">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<style>
+    /* Login Form Styles */
+    .login-form {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName"  class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
+    .login-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
 
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div> 
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
 
-            <br>
-            <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </form>
+    .login-form .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
 
-        <div class="text-center mt-3">
-            <a asp-controller="Home" asp-action="Index" class="text-secondary">Back to DashBoard</a>
+    .login-form .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .login-form a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .login-form a:hover {
+        color: #0056b3;
+    }
+</style>
+
+<div class="login-form">
+    <h2 class="text-center">Educator Login</h2>
+    <hr />
+    <form asp-action="Educator_Login" class="border p-4 rounded shadow">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="UserName" class="control-label"></label>
+            <input asp-for="UserName" class="form-control" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
-    </div>
-</div> 
 
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <br>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </form>
+
+    <div class="text-center mt-3">
+        <a asp-controller="Home" asp-action="Index" class="text-secondary">Back to DashBoard</a>
+    </div>
+</div>
 
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial"); 
-
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

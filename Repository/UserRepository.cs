@@ -8,15 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MVC_EduHub_Project.Repository
-{
+{  
+	  // UserRepository class implements IUserService interface
 	public class UserRepository : IUserService
 	{
 		private readonly AppDbContext _context;
+		// Constructor to inject AppDbContext
 		public UserRepository(AppDbContext context)
 		{
 			_context = context;
 		}
 
+		// Method to create a new user
 		public User CreateUser(User newuser)
 		{
 			_context.Users.Add(newuser);
@@ -26,6 +29,7 @@ namespace MVC_EduHub_Project.Repository
 		}
 
 
+		// Method to authenticate student login
 		public User StudentLogin(LoginModel user)
 		{
 			//select * from users where username=user.username and password = user.password and role="Student"; 
@@ -41,7 +45,9 @@ namespace MVC_EduHub_Project.Repository
 			}
 								
 		}
-	public User EducatorLogin(LoginModel loginModel)
+		
+		// Method to authenticate educator login
+		public User EducatorLogin(LoginModel loginModel)
 		{
 			var user2 = _context.Users.FirstOrDefault(u => u.UserName == loginModel.UserName && u.Password == loginModel.Password && u.Role == "Educator");
 			
@@ -56,18 +62,20 @@ namespace MVC_EduHub_Project.Repository
 			}
 		}
 
-	public User StudentData(int id)
+		// Method to retrieve student data by ID
+		public User StudentData(int id)
 	
-	{
-		var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
-		return data;
-	}
-	public User EducatorData(int id)
-	
-	{
-		var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
-		return data;
-	}
+		{
+			var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
+			return data;
+		}
+			// Method to retrieve educator data by ID
+		public User EducatorData(int id)
+		
+		{
+			var data=	_context.Users.FirstOrDefault(x => x.UserId==id);
+			return data;
+		}
 
 			
 	}

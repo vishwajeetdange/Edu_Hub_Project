@@ -7,17 +7,20 @@ using MVC_EduHub_Project.Models;
 
 namespace MVC_EduHub_Project.Controllers
 {
+	// Controller responsible for handling feedback-related actions
 	public class FeedbackController : Controller
 	{
-
+		// Private field to store the feedback service
 		private readonly IFeedbackService _feedbackservice;
-
+		
+		// Constructor to inject the feedback service
 		public FeedbackController(IFeedbackService feedbackservice)
 
 		{
 			_feedbackservice = feedbackservice;
 		}
-
+		
+		// GET action to retrieve feedback for a specific course
 		[HttpGet]
 		public IActionResult GetFeedbackByCourseId(int id)
 
@@ -25,6 +28,8 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _feedbackservice.GetFeedbackByCourseId(id);
 			return View(data);
 		}
+		
+		// GET action to retrieve feedback for the current user
 		[HttpGet]
 		public IActionResult GetFeedback()
 
@@ -34,6 +39,7 @@ namespace MVC_EduHub_Project.Controllers
 			return View(data);
 		}
 		
+		// GET action to display the form for adding new feedback
 		[HttpGet]
 		public IActionResult AddFeedback(int id)
 
@@ -43,6 +49,7 @@ namespace MVC_EduHub_Project.Controllers
 			return View(newfeedback);
 		}
 		
+		// POST action to handle the submission of new feedback
 		[HttpPost]
 		public IActionResult AddFeedback(Feedback feed ,int id)
 

@@ -9,9 +9,10 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace MVC_EduHub_Project.Controllers;
 
+// UserController handles user-related actions such as registration, login, and profile management
 public class UserController : Controller
 {
-	//public	readonly	UserRepository _userRepository =null;
+	// Dependencies injected through constructor
 	public readonly IUserService _userservice;
 	private readonly IHostingEnvironment _hostEnviroment;
 	public UserController(IUserService userservice, IHostingEnvironment hostEnviroment)
@@ -26,19 +27,26 @@ public class UserController : Controller
 	{
 		return View();
 	}
+	
+	// Display educator's profile
 	public IActionResult EducatorIndex()
 	{
+		TempData.Keep();
 		var id = Convert.ToInt32(HttpContext.Session.GetString("UserId"));
 		var data = _userservice.EducatorData(id);
 		return View(data);
 	}
-	public IActionResult StudentIndex()
+	
+	// Display student's profile
+   public IActionResult StudentIndex()
 	{
+		TempData.Keep();
 		var id = Convert.ToInt32(HttpContext.Session.GetString("StudUserId"));
 		var data = _userservice.StudentData(id);
 		return View(data);
 	}
-
+	
+	// GET: Display user registration form
 	[HttpGet]
 	public IActionResult AddUser()
 	{
@@ -61,6 +69,8 @@ public class UserController : Controller
 		}
 		return View();
 	}
+	
+	// POST: Handle user registration
 	[HttpPost]
 	public IActionResult AddUser(UserCreateViewModel model)
 	{
@@ -102,14 +112,16 @@ public class UserController : Controller
 			return View();
 		
 	}
-
+	
+	// GET: Display student login form
 	[HttpGet]
 	public IActionResult Student_Login()
 
 	{
 		return View();
 	}
-
+	
+	// POST: Handle student login
 	[HttpPost]
 	public IActionResult Student_Login(LoginModel loginModel)
 
@@ -130,15 +142,16 @@ public class UserController : Controller
 				}
 		
 	}
-
+	
+	// GET: Display Educator  login form
 	[HttpGet]
 	public IActionResult Educator_Login()
 
 	{
 		return View();
 	}
-	
-	
+
+	// POST: Handle Educator login
 	[HttpPost]
 	public IActionResult Educator_Login(LoginModel loginModel)
 
@@ -161,6 +174,8 @@ public class UserController : Controller
 			return View();
 		}
 	}
+
+	// Perform  LogOut Method
 	public ActionResult LogOut()
 	{
 		return RedirectToAction("Index", "Home");

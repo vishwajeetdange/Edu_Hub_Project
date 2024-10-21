@@ -7,7 +7,8 @@ using MVC_EduHub_Project.Models;
 
 namespace MVC_EduHub_Project.Controllers
 {
-	public class EnrollmentController : Controller
+	// POST: Handles the deletion of an enquiry
+   public class EnrollmentController : Controller
 	{
 
 		private readonly IEnrollmentService _enrollmentService;
@@ -17,7 +18,8 @@ namespace MVC_EduHub_Project.Controllers
 		{
 			_enrollmentService = enrollmentService;
 		}
-
+		
+		// GET: Retrieves enrollments for a specific course
 		[HttpGet]
 		public IActionResult GetEnrollmentByCourseId(int id)
 		
@@ -25,6 +27,8 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _enrollmentService.GetEnrollmentByCourseId(id);
 			return View(data);
 		}
+		
+		// GET: Retrieves enrollments for the current user
 		[HttpGet]
 		public IActionResult GetEnrollmentByUserId()
 		
@@ -33,7 +37,8 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _enrollmentService.GetEnrollemntByUserId(id);
 			return View(data);
 		}
-
+		
+		// GET: Retrieves enrolled courses for the current user
 		[HttpGet]
 		public IActionResult GetEnrollCourse()
 
@@ -42,6 +47,8 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _enrollmentService.GetEnrollCourse(id);
 			return View(data);
 		}
+		
+		// POST: Handles the submission of the edit form
 		[HttpGet]
 		public IActionResult Edit(int id)
 		
@@ -56,6 +63,8 @@ namespace MVC_EduHub_Project.Controllers
 			var data = _enrollmentService.GetEnrollmentByEnrollmentId(id);
 			return View(data);
 		}
+		
+		// POST: Handles the submission of the new enrollment form
 		[HttpPost]
 		public IActionResult Edit(int id,Enrollment enrollment)
 		
@@ -64,7 +73,8 @@ namespace MVC_EduHub_Project.Controllers
 			_enrollmentService.UpdateEnrollment(enrollment,id);
 			return RedirectToAction("GetEnrollCourse", "Enrollment");
 		}
-
+		
+		// GET: Add enrollments for that course by student.
 		[HttpGet]
 		public IActionResult AddEnrollment(int id)
 
@@ -73,11 +83,13 @@ namespace MVC_EduHub_Project.Controllers
 			return View(oldCourseid);
 
 		}
+		
+		// POST: Add enrollments for that course by student  exicute.
 		[HttpPost]
 		public IActionResult AddEnrollment(Enrollment enrollment, int id)
 
 		{
-			//enrollment.CourseId=id;	
+			enrollment.CourseId=id;	
 			enrollment.UserId = Convert.ToInt32(HttpContext.Session.GetString("StudUserId"));
 			_enrollmentService.CreateEnrollment(enrollment);
 			return RedirectToAction("StudentIndex", "User");

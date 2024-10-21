@@ -8,18 +8,22 @@ namespace MVC_EduHub_Project.Repository
 	public class CourseRepository : ICourseService
 	{
 		private readonly AppDbContext _context;
+		
+		// Constructor to initialize the database context
 		public CourseRepository(AppDbContext context)
 		{
 			_context = context;
 		}
 
-	  
+		// Method to create a new course
 		public Course CreateCourse(Course course)
 		{
 			_context.Courses.Add(course);
 			_context.SaveChanges();
 			return course;
 		}
+		
+		// Method to get all courses created by a specific user
 		public List<Course> GetCreatedCourseByUser(int id)
 		{
 			//System.Console.WriteLine("ID is "+id);
@@ -33,6 +37,7 @@ namespace MVC_EduHub_Project.Repository
 			// }
 			return data;
 		}
+		// Method to get a specific course by its ID
 		public Course GetCreatedCourseByCourseId(int id)
 		{
 
@@ -40,13 +45,15 @@ namespace MVC_EduHub_Project.Repository
 			return data;
 		}
 
+		// Method to get all courses
 		public List<Course> AllCourses()
 		{
 			List<Course> data = _context.Courses.Select(x => x).ToList();
 			return	data;
 			throw new NotImplementedException();
 		}
-
+		
+		// Method to edit an existing course
 		public Course EditCourse(Course newcourse,int id)
 		{
 			
@@ -64,7 +71,7 @@ namespace MVC_EduHub_Project.Repository
 			throw new NotImplementedException();
 		}
 
-		
+		// Method to get details of a specific course
 		public Course DetailsCourse(int id)
 		{
 			Course data = _context.Courses.FirstOrDefault(x => x.CourseId == id);
@@ -72,6 +79,7 @@ namespace MVC_EduHub_Project.Repository
 			throw new NotImplementedException();
 		}
 
+		// Method to get accepted status of courses for a specific user
 		public IEnumerable<MyCourses> GetMyCourseStatusAccpeted(int id)
 		
 		{

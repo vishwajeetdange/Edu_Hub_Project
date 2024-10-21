@@ -11,7 +11,7 @@ namespace MVC_EduHub_Project.Services
 		IEnumerable<Material> GetAllMaterial();
 		IEnumerable<Material> GetMaterialByCourseId(int courseId);
 		
-		void CreateMaterial(Material newmaterial);
+		Material CreateMaterial(Material newmaterial);
 		Material UpdateMaterial(Material material, int id);
 		bool DeleteMaterial(int materialId);
 		

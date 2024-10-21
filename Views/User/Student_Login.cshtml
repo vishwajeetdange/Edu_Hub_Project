@@ -9,7 +9,7 @@
 <hr />
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <form asp-action="Student_Login" class="border p-4 rounded shadow bg-light">
+        <form asp-action="Student_Login" class="login-form border p-4 rounded shadow bg-light">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
@@ -17,13 +17,13 @@
                 <input asp-for="UserName" class="form-control" placeholder="Enter your username" />
                 <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
-
+    
             <div class="form-group">
                 <label asp-for="Password" class="control-label"></label>
                 <input asp-for="Password" class="form-control" placeholder="Enter your password" type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            
+
             <br>
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -40,3 +40,59 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+<style>
+    .login-form {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #007bff;
+    }
+
+    .login-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .login-form .form-control {
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .login-form .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-form .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-form .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .login-form a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .login-form a:hover {
+        color: #0056b3;
+    }
+</style>

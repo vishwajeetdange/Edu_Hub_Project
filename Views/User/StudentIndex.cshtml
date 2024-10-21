@@ -6,14 +6,15 @@
     var photoPath = "~/assests/userimages/" + (Model.ProfileImage ?? "Noimge.jpg");
 
 }
-<h1>Welcome Student : @TempData["Student"]</h1>
+@* <h1>Welcome Student : @TempData["Student"]</h1> *@
+<h1>Welcome Student : @Model.UserName</h1>
 
 
 <div class="row justify-content-center m-3">
     <div class="col-sm-8 ">
             <div class=" text-center d-flex w-100 justify-content-center  align-items-center">
                 <img class="card-img-top" height="300px" width="300px" src="@photoPath" asp-append-version="true" />
-                <div class="w-100 h-100 float-left">
+                <div class="w-100 h-100 float-left  text-align=left">
                     @* <h4>User ID : @Model.UserId</h4> *@
                     <h4>Name : @Model.UserName</h4>
                     <h4>Role : @Model.Role</h4>
